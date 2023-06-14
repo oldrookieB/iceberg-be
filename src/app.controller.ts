@@ -1,16 +1,28 @@
-import { Controller, Get, Req, Res, UseGuards } from '@nestjs/common';
+import { Controller, Get, Req, UseGuards } from '@nestjs/common';
 import { AuthGuard } from '@nestjs/passport';
-import { Request, Response } from 'express';
+import { AppService } from './app.service';
+import { RequestWithUser } from './interfaces/request-with-user.interface';
+
 
 @Controller()
 export class AppController {
+  constructor(private readonly appService: AppService) {}
+
   @Get('auth/github')
   @UseGuards(AuthGuard('github'))
   async githubAuth() {}
 
   @Get('auth/github/callback')
   @UseGuards(AuthGuard('github'))
-  githubAuthCallback(@Req() req: Request, @Res() res: Response) {
-    res.redirect('/localhost:5173/addproject'); // 로그인 후 리다이렉션 되는 url
+  githubAuthCallback(@Req() req: RequestWithUser) {
+    const accessToken = req.user.accessToken;
+    return { access_token: accessToken };
+  }
+
+  @Get('repositories')
+  @UseGuards(AuthGuard('github'))
+  getUserRepositories(@Req() req: RequestWithUser) {
+    const accessToken = req.user.accessToken;
+    return this.appService.getUserRepositories(accessToken);
   }
 }
