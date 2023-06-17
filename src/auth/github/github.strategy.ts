@@ -3,21 +3,25 @@ import { PassportStrategy } from '@nestjs/passport';
 import { Strategy } from 'passport-github2';
 import { ConfigService } from '@nestjs/config';
 
+
 @Injectable()
-export class GitHubStrategy extends PassportStrategy(Strategy, 'github') {
+export class GithubStrategy extends PassportStrategy(Strategy, 'github') {
   constructor(private readonly configService: ConfigService) {
     super({
       clientID: configService.get('GITHUB_CLIENT_ID'),
       clientSecret: configService.get('GITHUB_CLIENT_SECRET'),
-      callbackURL: 'http://127.0.0.1:3000/auth',
+      callbackURL: 'GITHUB_REDIRECT_URI',
     });
   }
+  
 
   async validate(accessToken: string, refreshToken: string, profile: any): Promise<any> {
     return {
       accessToken,
       refreshToken,
-      profile,
+      profile : {
+        
+      },
     };
   }
 }

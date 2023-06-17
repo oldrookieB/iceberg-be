@@ -6,12 +6,11 @@ import { Request, Response } from 'express';
 export class AuthController {
   @Get()
   @UseGuards(AuthGuard('github'))
-  async githubAuth() {
-  }
+  async githubAuth() {}
 
   @Get()
   @UseGuards(AuthGuard('github'))
   githubAuthCallback(@Req() req: Request, @Res() res: Response) {
-    res.redirect('http://127.0.0.1:3000/auth');
+    res.redirect('GITHUB_REDIRECT_URI');
   }
 }
