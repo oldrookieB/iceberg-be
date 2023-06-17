@@ -4,15 +4,15 @@ import { AppService } from './app.service';
 import { RequestWithUser } from './interfaces/request-with-user.interface';
 
 
-@Controller()
+@Controller('auth')
 export class AppController {
   constructor(private readonly appService: AppService) {}
 
-  @Get('auth/github')
+  @Get()
   @UseGuards(AuthGuard('github'))
   async githubAuth() {}
 
-  @Get('auth/github/callback')
+  @Get()
   @UseGuards(AuthGuard('github'))
   githubAuthCallback(@Req() req: RequestWithUser) {
     const accessToken = req.user.accessToken;
