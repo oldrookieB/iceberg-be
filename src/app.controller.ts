@@ -8,9 +8,11 @@ import { RequestWithUser } from './interfaces/request-with-user.interface';
 export class AppController {
   constructor(private readonly appService: AppService) {}
 
+  /*
   @Get()
   @UseGuards(AuthGuard('github'))
   async githubAuth() {}
+  */
 
   @Get()
   @UseGuards(AuthGuard('github'))
@@ -21,8 +23,8 @@ export class AppController {
 
   @Get('repositories')
   @UseGuards(AuthGuard('github'))
-  getUserRepositories(@Req() req: RequestWithUser) {
+  getGithubInfo(@Req() req: RequestWithUser) {
     const accessToken = req.user.accessToken;
-    return this.appService.getUserRepositories(accessToken);
+    return this.appService.getGithubInfo(accessToken);
   }
 }

@@ -5,8 +5,8 @@ import { GithubService } from './auth/github/github.service';
 export class AppService {
   constructor(private readonly githubService: GithubService) {}
 
-  async getUserRepositories(accessToken: string) {
-    const response = await this.githubService.getUserRepositories(accessToken);
+  async getGithubInfo(accessToken: string) {
+    const response = await this.githubService.getGithubInfo(accessToken);
     return response.data;
   }
 }

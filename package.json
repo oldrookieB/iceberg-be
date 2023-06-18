@@ -1,8 +1,8 @@
 {
-  "name": "nest-github-oauth",
+  "name": "iceberg-be",
   "version": "0.0.1",
-  "description": "",
-  "author": "",
+  "description": "Github Project Archiving WebSite Project",
+  "author": "wayandway",
   "private": true,
   "license": "UNLICENSED",
   "scripts": {

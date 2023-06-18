@@ -13,15 +13,11 @@ export class GithubStrategy extends PassportStrategy(Strategy, 'github') {
       callbackURL: 'GITHUB_REDIRECT_URI',
     });
   }
-  
 
   async validate(accessToken: string, refreshToken: string, profile: any): Promise<any> {
     return {
       accessToken,
       refreshToken,
-      profile : {
-        
-      },
     };
   }
 }
