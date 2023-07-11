@@ -14,6 +14,4 @@
 ## Tech
 ### Framework 
 - Nest.js
-- Passport & JWT
-
-### DB
+- Passport
